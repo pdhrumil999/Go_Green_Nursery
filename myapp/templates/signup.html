@@ -1,0 +1,246 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Shoppers &mdash; Colorlib e-Commerce Template</title>
+      <script type="text/javascript">
+      function checkFname()
+    {
+      var f=document.frm.fname.value;
+      var reg=/^[A-Za-z]+$/;
+      if(f=="")
+      {
+        document.getElementById("fname").innerHTML="Please Enter First Name";
+      }
+      else if(!reg.test(f))
+      {
+        document.getElementById("fname").innerHTML="Please Enter Only Alphabets";
+      }
+      else
+      {
+        document.getElementById("fname").innerHTML="";  
+      }
+    }
+        function checkLname()
+    {
+      var f=document.frm.lname.value;
+      var reg=/^[A-Za-z]+$/;
+      if(f=="")
+      {
+        document.getElementById("lname").innerHTML="Please Enter Lirst Name";
+      }
+      else if(!reg.test(f))
+      {
+        document.getElementById("lname").innerHTML="Please Enter Only Alphabets";
+      }
+      else
+      {
+        document.getElementById("lname").innerHTML="";  
+      }
+    }
+    function checkEmail()
+    {
+      var e=document.frm.email.value;
+      var reg=/^[A-Za-z0-9-_.]+@[A-Za-z]+\.+[A-Za-z]{2,4}$/;
+      if(e=="")
+      {
+        document.getElementById("email").innerHTML="Please Enter Email";
+      }
+      else if(!reg.test(e))
+      {
+        document.getElementById("email").innerHTML="Please Enter Valid Email ID"; 
+      }
+      else
+      {
+        document.getElementById("email").innerHTML="";  
+      }
+    }
+    function checkMobile()
+    {
+      var m=document.frm.mobile.value;
+      var reg=/^\d{10}$/;
+      if(m=="")
+      {
+        document.getElementById("mobile").innerHTML="Please Enter Mobile";
+      }
+      else if(!reg.test(m))
+      {
+        document.getElementById("mobile").innerHTML="Please Enter 10 Digits Only";  
+      }
+      else
+      {
+        document.getElementById("mobile").innerHTML="";
+      }
+    }
+    function checkPassword()
+    {
+      var p=document.frm.password.value;
+      var reg=/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+      if(p=="")
+      {
+        document.getElementById("password").innerHTML="Please Enter Password";
+      }
+      else if(!reg.test(p))
+      {
+        document.getElementById("password").innerHTML="Min 1 Digit, Upper, Lower, Special(8,15)";
+      }
+      else
+      {
+        document.getElementById("password").innerHTML="";
+      }
+    }
+    function checkCpassword()
+    {
+      var p1=document.frm.password.value;
+      var p2=document.frm.cpassword.value;
+      
+      if(p2=="")
+      {
+        document.getElementById("cpassword").innerHTML="Please Enter Confirm Password";
+      }
+      else if(p1!=p2)
+      {
+        document.getElementById("cpassword").innerHTML="Password & Confirm Password Does Not Matched";
+      }
+      else
+      {
+        document.getElementById("cpassword").innerHTML="";
+      }
+    }</script>
+</head>
+
+ <div class="breadcrumb-area">
+        <!-- Top Breadcrumb Area -->
+        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url({% static 'img/bg-img/24.jpg' %});">
+            <h2>Sign UP</h2>
+        </div>
+
+<body>
+
+    <div class="site-wrap">
+        <div class="bg-light py-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 mb-0"><a href="{% url 'index' %}">Home</a> <span class="mx-2 mb-0">/</span>
+                        <strong class="text-black">Sign Up</strong></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="site-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="h3 mb-3 text-black" style="color:black" align="center">Sign Up</h2>
+                    </div>
+                    <div class="col-md-12">
+                        {% if msg %}
+                            <h4 style="color: blue;">{{msg}}</h4>
+                        {% endif %}
+                        <form action="{% url 'signup' %}" method="post" name="frm">
+                            {% csrf_token %}
+                            <div class="p-3 p-lg-5 border">
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                       <select class="col-md-12 form-control" name="usertype" id="">
+                                           <option value="">--Select User Type--</option>
+                                           <option value="user">User</option>
+                                           <option value="seller">Seller</option>
+                                       </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label for="c_fname" class="text-black" style="color:black">First Name <span 
+                                                class="text-danger">*</span></label>
+                                        <input required type="text" class="form-control" id="c_fname" name="fname" onblur="checkFname();">
+                                        <span style="color:red" id="fname"></span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="c_lname" class="text-black" style="color:black">Last Name <span
+                                                class="text-danger">*</span></label>
+                                        <input required type="text" class="form-control" id="c_lname" name="lname" onblur="checkLname();">
+                                        <span style="color:red" id="lname"></span>
+
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <label for="c_email" class="text-black" style="color:black">Email<span
+                                                class="text-danger">*</span></label>
+                                        <input required type="email" class="form-control" id="c_email" name="email"
+                                            placeholder="" onblur="checkEmail();">
+
+                                        <span id="email" style="color: red;"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <label for="c_subject" class="text-black" style="color:black" >Mobile</label>
+                                        <input required type="text" class="form-control" id="c_subject" name="mobile" onblur="checkMobile();">
+                                        <span style="color:red" id="mobile"></span>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <label for="c_message" class="text-black" style="color:black">Address</label>
+                                        <textarea name="address" id="c_message" cols="30" rows="7"
+                                            class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <label for="c_subject" class="text-black" style="color:black">Password</label>
+                                        <input required type="password" class="form-control" id="c_subject" name="password" onblur="checkPassword();">
+                                        <span style="color: red;" id="password"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <label for="c_subject" class="text-black" style="color:black">Confirm Password</label>
+                                        <input type="password" class="form-control" id="c_subject" name="cpassword">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-lg-12">
+                                        <input type="submit" class="btn btn-success btn-lg btn-block"
+                                            value="Sign Up">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $("#c_email").change(function(){
+          var email=$(this).val();
+          $.ajax({
+            url: '/ajax/validate_email/',
+            data: {
+              'email': email
+            },
+            dataType: 'json',
+            success: function (data) {
+              if (data.is_taken) {
+                /*document.getElementById("c_email").style.border="5px solid red";*/
+                document.getElementById("email_error").innerHTML="This Email ID Already Registered"
+              }else{
+                /*document.getElementById("c_email").style.border="5px solid green";*/
+              }
+            }
+          });
+        });
+      </script>  
+</body>
+
+</html>
+{% endblock %}

@@ -1,0 +1,171 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-circle"></div>
+        <div class="preloader-img">
+            <img src="{% static 'img/core-img/leaf.png' %}" alt="">
+        </div>
+    </div>
+
+
+
+    <!-- ##### Breadcrumb Area Start ##### -->
+    <div class="breadcrumb-area">
+        <!-- Top Breadcrumb Area -->
+        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url({% static 'img/bg-img/24.jpg' %});">
+            <h2>Cart</h2>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Cart</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcrumb Area End ##### -->
+
+
+  <body>
+  
+  <div class="site-wrap">
+    <div class="bg-light py-3">
+      <div class="container">
+        <div class="row">
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row mb-5">
+   
+            <div class="site-blocks-table col-md-12">
+              <table class="table table-bordered">
+                {% if carts %}
+                <thead>
+                  <tr>
+                    <th class="product-thumbnail" style="color: black;">Image</th>
+                    <th class="product-name" style="color: black;">Product</th>
+                    <th class="product-price" style="color: black;">Price</th>
+                    <th class="product-quantity" style="color: black;">Quantity</th>
+                    <th class="product-total" style="color: black;">Total</th>
+                    <th class="product-remove" style="color: black;" >Remove</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for i in carts %}
+                   
+                  <tr>
+                    <td class="product-thumbnail" align="center">
+                      <img src="{{i.product.product_image.url}}" alt="Image" class="img-fluid" style="height:100px; width:100px;">
+                    </td>
+                    <td class="product-name">
+                      <h2 class="h5 text-black" style="color: black;">{{i.product.product_name}}</h2>
+                    </td>
+                    <td>&#8377;{{i.product.product_price}}</td>
+                    <td>
+                      <form method="post" action="{% url 'change_qty'%}">
+                          {% csrf_token %}
+                        <input type="hidden" name="cid" value="{{i.pk}}">
+                        <div class="input-group mb-3" style="max-width: 120px;">
+                          
+                          
+                          <input type="number" value="{{i.product_qty}}"   name="product_qty" min="1" max="10" onchange="this.form.submit()">
+
+                      </div>
+                      </form>
+
+                    </td>
+                    <td>&#8377;{{i.total_price}}</td>
+                    <td><a href="{% url 'remove_from_cart' pk=i.product.pk %}" class="btn btn-danger">X</a></td>
+                  </tr>
+                  {% endfor %}
+                  {% else %}
+								<h2 align="center" style="color: black;">No Products In Carts</h2>
+								{% endif %}
+                  
+                </tbody>
+              </table>
+            </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="row mb-5">
+              
+              
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+               
+              </div>
+              <div class="col-md-8 mb-3 mb-md-0">
+               
+              </div>
+              <div class="col-md-4">
+                
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 pl-5">
+            <div class="row justify-content-end">
+              <div class="col-md-7">
+                <div class="row">
+                  <div class="col-md-12 text-right border-bottom mb-5">
+                    <h3 class="text-black h4 text-uppercase"style="color: black;">Cart Totals</h3>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <span class="text-black" style="color: black;">Subtotal</span>
+                  </div>
+                  <div class="col-md-6 text-right">
+                    <strong class="text-black">&#8377;{{net_price}}</strong>
+                  </div>
+                </div>
+                <div class="row mb-5">
+                  <div class="col-md-6">
+                    <span class="text-black" style="color: black;">Total</span>
+                  </div>
+                  <div class="col-md-6 text-right">
+                    <strong class="text-black">&#8377;{{net_price}}</strong>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-md-12" align="right">
+                    <form method="post" action="{% url 'billing_details' %}">
+                      {% csrf_token %}
+                     <input type="hidden" name="amount" value="{{net_price}}">
+                      <button class="btn btn-success btn-lg py-3 btn-block" >Proceed To Checkout</button>
+                    </form>
+                    <br>
+                  </div>  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    
+  </body>
+</html>
+{% endblock %}

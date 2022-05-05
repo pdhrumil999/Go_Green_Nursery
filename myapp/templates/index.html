@@ -1,0 +1,203 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-circle"></div>
+        <div class="preloader-img">
+            <img src="{% static 'img/core-img/leaf.png' %}" alt="">
+        </div>
+    </div>
+
+    <!-- ##### Hero Area Start ##### -->
+    <section class="hero-area">
+        <div class="hero-post-slides owl-carousel">
+
+            <!-- Single Hero Post -->
+            <div class="single-hero-post bg-overlay">
+                <!-- Post Image -->
+                <div class="slide-img bg-img" style="background-image: url({% static 'img/bg-img/1.jpg' %});"></div>
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                            <!-- Post Content -->
+                            <div class="hero-slides-content text-center">
+                                <h2>Plants exist in the weather and light rays that surround them</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque ante nec ipsum iaculis, ac iaculis ipsum porttitor. Vivamus cursus nisl lectus, id mattis nisl lobortis eu. Duis diam augue, dapibus ut dolor at, mattis maximus dolor.</p>
+                                <div class="welcome-btn-group">
+                                    <a href="{%  url 'shop' %}" class="btn alazea-btn mr-30">SHOP NOW</a>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Single Hero Post -->
+            <div class="single-hero-post bg-overlay">
+                <!-- Post Image -->
+                <div class="slide-img bg-img" style="background-image: url({% static 'img/bg-img/2.jpg' %});"></div>
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                            <!-- Post Content -->
+                            <div class="hero-slides-content text-center">
+                                <h2>Plants exist in the weather and light rays that surround them</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pellentesque ante nec ipsum iaculis, ac iaculis ipsum porttitor. Vivamus cursus nisl lectus, id mattis nisl lobortis eu. Duis diam augue, dapibus ut dolor at, mattis maximus dolor.</p>
+                                <div class="welcome-btn-group">
+                                    <a href="#" class="btn alazea-btn mr-30">GET STARTED</a>
+                                    <a href="#" class="btn alazea-btn active">CONTACT US</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- ##### Hero Area End ##### -->
+
+    <!-- ##### Service Area Start ##### -->
+   
+    <!-- ##### About Area End ##### -->
+
+    <!-- ##### Portfolio Area Start ##### -->
+    
+    <!-- ##### Portfolio Area End ##### -->
+
+    <!-- ##### Testimonial Area Start ##### -->
+   
+    <!-- ##### Testimonial Area End ##### -->
+
+    <!-- ##### Product Area Start ##### -->
+    <section class="new-arrivals-products-area bg-gray section-padding-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Section Heading -->
+                    <div class="section-heading text-center">
+                        <h2>PRODUCTS</h2>
+                        <p>We have the latest products, it must be exciting for you</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-5">
+                {% for i in products %}
+                <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+                  <div class="block-4 text-center border">
+                    <figure class="block-4-image">
+                      <a href="{% url 'product_detail' pk=i.pk %}"><img src="{{i.product_image.url}}" class="rounded" alt="Image placeholder" class="img-fluid" style="width:250px; height:250px;"></a>
+                    </figure>
+                    <div class="block-4-text p-4">
+                      <h3><a class="" href="{% url 'product_detail' pk=i.pk %}" style="color: blue;">{{i.product_name}}</a></h3>
+                      <p class="mb-0">{{i.product_category}}</p>
+                      <p class="text-dark font-weight-bold">&#8377;{{i.product_price}}</p>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+  
+                
+  
+  
+              </div>
+        </div>
+    </section>
+    <!-- ##### Product Area End ##### -->
+
+    <!-- ##### Blog Area Start ##### -->
+    
+    <!-- ##### Blog Area End ##### -->
+
+    <!-- ##### Subscribe Area Start ##### -->
+    
+        <!-- Subscribe Side Thumbnail -->
+        
+    <!-- ##### Subscribe Area End ##### -->
+
+    <!-- ##### Contact Area Start ##### -->
+       <section class="alazea-blog-area section-padding-100-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Section Heading -->
+                    <div class="section-heading text-center">
+                        <h2>LATEST NEWS</h2>
+                        <p>The breaking news about Gardening &amp; House plants</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+
+                <!-- Single Blog Post Area -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-blog-post mb-100">
+                        <div class="post-thumbnail mb-30">
+                            <a href="single-post.html"><img src="{% static 'img/bg-img/6.jpg' %}" alt=""></a>
+                        </div>
+                        <div class="post-content">
+                            <a href="single-post.html" class="post-title">
+                                <h5>Garden designers across the country forecast ideas shaping the gardening world in 2018</h5>
+                            </a>
+                            <div class="post-meta">
+                                <a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i> 20 Jun 2018</a>
+                                <a href="#"><i class="fa fa-user" aria-hidden="true"></i> Alan Jackson</a>
+                            </div>
+                            <p class="post-excerpt">Integer luctus diam ac scerisque consectetur. Vimus ottawas nec lacus sit amet. Aenean interdus mid vitae.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Blog Post Area -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-blog-post mb-100">
+                        <div class="post-thumbnail mb-30">
+                            <a href="single-post.html"><img src="{% static 'img/bg-img/7.jpg' %}" alt=""></a>
+                        </div>
+                        <div class="post-content">
+                            <a href="single-post.html" class="post-title">
+                                <h5>2018 Midwest Tree and Shrub Conference: Resilient Plants for a Lasting Landscape</h5>
+                            </a>
+                            <div class="post-meta">
+                                <a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i> 20 Jun 2018</a>
+                                <a href="#"><i class="fa fa-user" aria-hidden="true"></i> Christina Aguilera</a>
+                            </div>
+                            <p class="post-excerpt">Integer luctus diam ac scerisque consectetur. Vimus ottawas nec lacus sit amet. Aenean interdus mid vitae.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Blog Post Area -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="single-blog-post mb-100">
+                        <div class="post-thumbnail mb-30">
+                            <a href="single-post.html"><img src="{% static 'img/bg-img/8.jpg' %}" alt=""></a>
+                        </div>
+                        <div class="post-content">
+                            <a href="single-post.html" class="post-title">
+                                <h5>The summer coming up, it’s time for both us and the flowers to soak up the sunshine</h5>
+                            </a>
+                            <div class="post-meta">
+                                <a href="#"><i class="fa fa-clock-o" aria-hidden="true"></i> 19 Jun 2018</a>
+                                <a href="#"><i class="fa fa-user" aria-hidden="true"></i> Mason Jenkins</a>
+                            </div>
+                            <p class="post-excerpt">Integer luctus diam ac scerisque consectetur. Vimus ottawas nec lacus sit amet. Aenean interdus mid vitae.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- ##### Contact Area End ##### -->
+{% endblock %}
+</body>
+</html>

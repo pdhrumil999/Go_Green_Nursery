@@ -1,0 +1,116 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-circle"></div>
+        <div class="preloader-img">
+            <img src="{% static 'img/core-img/leaf.png' %}" alt="">
+        </div>
+    </div>
+
+    
+
+    <!-- ##### Breadcrumb Area Start ##### -->
+    <div class="breadcrumb-area">
+        <!-- Top Breadcrumb Area -->
+        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url({% static 'img/bg-img/24.jpg' %});">
+            <h2>Shop</h2>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Shop</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcrumb Area End ##### -->
+
+    <!-- ##### Shop Area Start ##### -->
+    <div class="site-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-md-9 order-2">
+            <div class="row">
+              <div class="col-md-12 mb-5">
+              
+                <div class="d-flex">
+                </div>
+              </div>
+            </div>
+            <div class="row mb-5">
+              {% for i in products %}
+              <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
+                <div class="block-4 text-center border">
+                  <figure class="block-4-image">
+                    <a href="{% url 'product_detail' pk=i.pk %}"><img src="{{i.product_image.url}}" class="rounded" alt="Image placeholder" class="img-fluid" style="width:250px; height:250px;"></a>
+                  </figure>
+                  <div class="block-4-text p-4">
+                    <h3><a class="" href="{% url 'product_detail' pk=i.pk %}" style="color: blue;">{{i.product_name}}</a></h3>
+                    <p class="mb-0">{{i.product_category}}</p>
+                    <p class="text-dark font-weight-bold" >&#8377;{{i.product_price}}</p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+
+              
+
+
+            </div>
+            <div class="row" data-aos="fade-up">
+              <div class="col-md-12 text-center">
+                <div class="site-block-27">
+                  <ul>
+                    
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3 order-1 mb-5 mb-md-0">
+            <div class="border p-4 rounded mb-4">
+              <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
+              <ul class="list-unstyled mb-0">
+                <li class="mb-1"><a href="{% url 'shop' %}" class="d-flex text-info"><span>All Product</span> <span class="text-info ml-auto"></span></a></li>
+                <li class="mb-1"><a href="{% url 'category_garden' %}" class="d-flex text-info"><span>Garden</span> <span class="text-info ml-auto">{{garden}}</span></a></li>
+                <li class="mb-1"><a href="{% url 'category_plant' %}" class="d-flex text-info"><span>Plant</span> <span class="text-info ml-auto">{{plant}}</span></a></li>
+                <li class="mb-1"><a href="{% url 'category_seed' %}" class="d-flex text-info"><span>Seed</span> <span class="text-info ml-auto">{{seed}}</span></a></li>
+                <li class="mb-1"><a href="{% url 'category_fertilizer' %}" class="d-flex text-info"><span>Fertilizer</span> <span class="text-info ml-auto">{{fertilizer}}</span></a></li>
+                <li class="mb-1"><a href="{% url 'category_accessories' %}" class="d-flex text-info"><span>Accessories</span> <span class="text-info ml-auto">{{accessories}}</span></a></li>
+              </ul>
+            </div>
+
+            
+                    </a>
+                  </div>
+                </div>
+              
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>   
+    <!-- ##### Shop Area End ##### -->
+
+
+
+</body>
+
+</html>
+{% endblock %}

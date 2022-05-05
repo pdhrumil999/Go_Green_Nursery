@@ -1,0 +1,167 @@
+{% extends 'seller_header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-circle"></div>
+        <div class="preloader-img">
+            <img src="{% static 'img/core-img/leaf.png' %}" alt="">
+        </div>
+    </div>
+
+    
+
+    <!-- ##### Breadcrumb Area Start ##### -->
+    <div class="breadcrumb-area">
+        <!-- Top Breadcrumb Area -->
+        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url({% static 'img/bg-img/24.jpg' %});">
+            <h2>Add Product</h2>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Add Product</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcrumb Area End ##### -->
+
+    
+
+    <!-- ##### Contact Area Start ##### -->
+     <div class="site-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="h3 mb-3 text-black" style="color:black;" align="center" >Add Product</h2>
+                    </div>
+                    <div class="col-md-12">
+                        {% if msg %}
+                            <h4 style="color:black;">{{msg}}</h4>
+                        {% endif %}    
+                         <form action="{% url 'seller_add_product' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="p-3 p-lg-5 border">
+                                
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                       <select class="col-md-12 form-control" name="product_category" id="" style="color:black;">
+                                        <option value="">--Select  Product --</option>
+                                        <option value="Garden">Gardning</option>
+                                        <option value="plant">Plant</option>
+                                        <option value="seed">Seed</option>
+                                        <option value="Fertilizer">Fertilizer</option>
+                                        <option value="accessories">Accessories</option>
+                                       </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                       <select class="col-md-12 form-control" name="garden_category" id="" style="color: black;">
+                                        <option value="" style="color: black;">--Select  Garden category--</option>
+                                        <option value="flower_garden">Flower Gardning</option>
+                                        <option value="vegetable_garden">Vegetable Gardning</option>
+                                        <option value="herbal_garden">Herbal Gardning</option>
+                                        <option value="indoor_garden">Indoor Gardning</option>
+                                       </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                       <select class="col-md-12 form-control" name="plant_category" id="" style="color: black;">
+                                        <option value="" style="color: black;">--Select  Plant category--</option>
+                                        n>
+                                        <option value="indoor_plant" style="color: black;">Indoor Plant</option>
+                                        <option value="outdoor_plant" style="color: black;">Outdoor Plant</option>
+                                        <option value="office_plant" style="color: black;">Office Plant </option>
+                                       </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label for="c_fname" class="text-black" style="color: black;">Product Price<span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="c_fname" name="product_price">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="c_lname" class="text-black" style="color: black;">Image<span
+                                                class="text-danger">*</span></label>
+                                        <input type="file" class="form-control" id="c_lname" name="product_image">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                <div class="col-md-12">
+                                        <label for="c_fname" class="fcolor" style="color: black;">Product Name <span
+                                                class="text-danger" >*</span></label>
+                                        <input required type="text" class="form-control" id="c_fname" name="product_name" >
+                                </div>
+                                </div>
+
+                                <div class="form-group row">
+                                <div class="col-md-12">
+                                        <label for="c_fname" class="fcolor" style="color: black;">Product Maintainance <span
+                                                class="text-danger" >*</span></label>
+                                        <input required type="text" class="form-control" id="c_fname" name="product_maintainance" >
+                                </div>
+                                </div>
+
+                                <div class="form-group row">
+                                <div class="col-md-12">
+                                        <label for="c_fname" class="fcolor" style="color: black;">Water Schedule <span
+                                                class="text-danger" >*</span></label>
+                                        <input required type="text" class="form-control" id="c_fname" name="product_waterschedule" >
+                                </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <label for="c_message" class="text-black" style="color: black;">Product Description</label>
+                                        <textarea name="product_desc" id="c_message" cols="30" rows="5"
+                                            class="form-control"></textarea>
+                                    </div>
+                                </div>
+
+                              
+
+                                <div class="form-group row">
+                                    <div class="col-12" align="center">
+                                    <button type="submit" class="btn alazea-btn mt-15">Add Product</button>
+                                </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Contact Area End ##### -->
+
+
+
+
+</body>
+
+</html>
+{% endblock %}

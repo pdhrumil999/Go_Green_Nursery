@@ -1,0 +1,168 @@
+{% extends 'seller_header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+<body>
+
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-circle"></div>
+        <div class="preloader-img">
+            <img src="{% static 'img/core-img/leaf.png' %}" alt="">
+        </div>
+    </div>
+
+    
+
+    <!-- ##### Breadcrumb Area Start ##### -->
+    <div class="breadcrumb-area">
+        <!-- Top Breadcrumb Area -->
+        <div class="breadcrumb-area">
+        <!-- Top Breadcrumb Area -->
+        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url({% static 'img/bg-img/24.jpg' %});">
+            <h2>EDIT PRODUCT</h2>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"><i class="fa fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Edit Product</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcrumb Area End ##### -->
+
+
+    <!-- ##### Contact Area Start ##### -->
+    <div class="site-wrap">
+        <div class="bg-light py-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 mb-0"><a href="{% url 'seller_index' %}">Home</a> <span class="mx-2 mb-0">/</span>
+                        <strong class="text-black">Contact</strong></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="site-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="h3 mb-3 text-black">Add Product</h2>
+                    </div>
+                    <div class="col-md-12">
+                        {% if msg %}
+                            <h4 style="color: blue;">{{msg}}</h4>
+                        {% endif %}
+                        <form action="{% url 'seller_edit_product' pk=product.pk %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="p-3 p-lg-5 border">
+                                
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <select class="col-md-12 form-control" name="product_category" id="">
+                                            {% if product.product_category == "gardning" %}
+                                                <option value="garden" selected>Gardning</option>
+                                                <option value="plant">Plant</option>
+                                                <option value="seed">Seed</option>
+                                                <option value="fertilizer">Fertilizer</option>
+                                                <option value="accessories">Accessories</option>
+                                            {% elif product.product_category == "plant" %}
+                                                <option value="garden">Gardning</option>
+                                                <option value="plant" selected>Plant</option>
+                                                <option value="seed">Seed</option>
+                                                <option value="fertilizer">Fertilizer</option>
+                                                <option value="accessories">Accessories</option>
+                                            {% elif product.product_category == "seed" %}
+                                                <option value="garden">Gardning</option>
+                                                <option value="plant">Plant</option>
+                                                <option value="seed selected">Seed</option>
+                                                <option value="fertilizer">Fertilizer</option>
+                                                <option value="accessories">Accessories</option>
+                                            {% elif product.product_category == "fertilizer" %}  
+                                                <option value="garden">Gardning</option>
+                                                <option value="plant">Plant</option>
+                                                <option value="seed">Seed</option>
+                                                <option value="fertilizer selected">Fertilizer</option>
+                                                <option value="accessories">Accessories</option>
+                                            {% elif product.product_category == "accessories" %}
+                                                <option value="garden">Gardning</option>
+                                                <option value="plant">Plant</option>
+                                                <option value="seed">Seed</option>
+                                                <option value="fertilizer">Fertilizer</option>
+                                                <option value="accessories selected">Accessories</option>
+                                            {% else %}
+                                                <option>---Select Category---</option>
+                                                <option value="garden">Gardning</option>
+                                                <option value="plant">Plant</option>
+                                                <option value="seed">Seed</option>
+                                                <option value="fertilizer">Fertilizer</option>
+                                                <option value="accessories">Accessories</option>
+                                            {% endif %}
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                
+                                
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label for="c_fname" class="text-black">Product Price<span
+                                                class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="c_fname" name="product_price" value="{{product.product_price}}">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="c_lname" class="text-black">Image<span
+                                                class="text-danger">*</span></label>
+                                        <input type="file" class="form-control" id="c_lname" name="product_image">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <label for="c_message" class="text-black">Current Image</label>
+                                        <img src="{{product.product_image.url}}">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="c_message" class="text-black">Product Description</label>
+                                        <textarea name="product_desc" id="c_message" cols="30" rows="7"
+                                            class="form-control" >{{product.product_desc}}</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-lg-12">
+                                        <input type="submit" class="btn btn-success btn-lg btn-block"
+                                            value="Edit Product">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-12 col-lg-6">
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Contact Area End ##### -->
+
+
+
+
+</body>
+
+</html>
+{% endblock %}

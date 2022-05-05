@@ -1,0 +1,94 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-circle"></div>
+        <div class="preloader-img">
+            <img src="{% static 'img/core-img/leaf.png' %}" alt="">
+        </div>
+    </div>
+
+    
+
+    <!-- ##### Breadcrumb Area Start ##### -->
+    <div class="breadcrumb-area">
+        <!-- Top Breadcrumb Area -->
+        <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url({% static 'img/bg-img/24.jpg' %});">
+            <h2>WIsh LIst</h2>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Wish List</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcrumb Area End ##### -->
+
+   
+           
+
+                       
+                               
+                               
+                
+                <!-- All Products Area -->
+                <div class="col-12 col-md-8 col-lg-9">
+                    <div class="shop-products-area">
+                        <div class="row">
+                            
+                            {% for i in wishlists %}
+                            <!-- Single Product Area -->
+                            <div class="col-12 col-sm-6 col-lg-4">
+                                <div class="single-product-area mb-50">
+                                    <!-- Product Image -->
+                                    <div class="product-img">
+                                        <a href="{% url 'product_detail' pk=i.product.pk %}"><img src="{{i.product.product_image.url}}" alt="" style="width: 250px;height: 300px"></a>
+                                        <!-- Product Tag -->
+                                       
+                                        <div>
+                                        </div>
+                                    </div>
+                                    <!-- Product Info -->
+                                    <div class="product-info mt-15 text-center">
+                                        <a href="shop-details.html"></a>
+                                        <p class="mb-0">{{i.product.product_name}}</p>
+                                        <p class="text-dark font-weight-bold">&#8377;{{i.product.product_price}}</p>
+                                        <p class="text-primary font-weight-bold"></p>
+                                        </a>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                   
+
+
+                        <!-- Pagination -->
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Shop Area End ##### -->
+
+
+
+</body>
+
+</html>
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends 'seller_header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-circle"></div>
+        <div class="preloader-img">
+            <img src="{% static 'img/core-img/leaf.png' %}" alt="">
+        </div>
+    </div>
+
+    <!-- ##### Hero Area Start ##### -->
+    <section class="hero-area">
+        <div class="hero-post-slides owl-carousel">
+
+            <!-- Single Hero Post -->
+            <div class="single-hero-post bg-overlay">
+                <!-- Post Image -->
+                <div class="slide-img bg-img" style="background-image: url({% static 'img/bg-img/1.jpg' %});"></div>
+                <div class="container h-100">
+                    <div class="row h-100 align-items-center">
+                        <div class="col-12">
+                            
+                        </div>
+                    </div>
+                </div>
+            
+
+           
+
+        </div>
+    </section>
+    <!-- ##### Hero Area End ##### -->
+
+    
+
+    <!-- ##### Product Area Start ##### -->
+    <section class="new-arrivals-products-area bg-gray section-padding-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Section Heading -->
+                    <div class="section-heading text-center">
+                        <h2>My Product </h2>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                {% for i in products %}
+                <!-- Single Product Area -->
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="single-product-area mb-50 wow fadeInUp" data-wow-delay="100ms" style="border-radius: 7%;">
+                        <!-- Product Image -->
+
+                        <div class="product-img">
+                            <a href="shop-details.html">
+                            <img src="{{i.product_image.url}}" class="rounded" alt="" style="width:300px; height: 300px;"></a>
+                            <!-- Product Tag -->
+                            
+                            <div >
+                            </div>
+                        </div>
+                        <!-- Product Info -->
+                        <div class="product-info mt-15 text-center">
+                            <a href="shop-details.html">
+                            <p><a href="{{i.product_category}}"></p><br>
+                                <p class="mb-0">{{i.product_name}}</p><br>
+                                <p class="text-primary font-weight-bold">{{i.product_price}}</p><br>
+                                <p class="text-primary font-weight-bold"></p>
+
+                                    <a href="{% url 'seller_edit_product' pk=i.pk %}">
+                                        <input type="button" value="EDIT" class="btn btn-primary">
+                                
+                                    <a href="{% url 'seller_delete_product' pk=i.pk %}">
+                                        <input type="button" value="DELETE" class="btn btn-danger">        
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                
+
+                
+
+            </div>
+        </div>
+    </section>
+    <!-- ##### Product Area End ##### -->
+
+    
+
+   
+
+</body>
+</html>
+{% endblock %}
